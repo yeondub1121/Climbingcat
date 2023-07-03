@@ -5,26 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class catcontroller : MonoBehaviour
 {
-    Rigidbody2D rigid2D;// Rigidbody2D ÄÄÆ÷³ÍÆ®¸¦ »ç¿ëÇÏ±â À§ÇÑ º¯¼ö
-    Animator animator; // Animator ÄÄÆ÷³ÍÆ®¸¦ »ç¿ëÇÏ±â À§ÇÑ º¯¼ö
-    float jumpForce = 670.0f; // Á¡ÇÁ  Å©±â
-    float walkForce = 100.0f; // ÀÌµ¿·Â Áõ°¡ 
-    float maxWalkSpeed = 3.0f; // ÃÖ´ë ÀÌµ¿ ¼Óµµ Áõ°¡ 
-    Vector3 defaultScale; // ±âº» Å©±â¸¦ ÀúÀåÇÏ±â À§ÇÑ º¯¼ö
-    GameObject director; // GameDirector °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ ÂüÁ¶ÇÏ±â À§ÇÑ º¯¼ö
-    public AudioClip jumpSE; // Á¡ÇÁ »ç¿îµå ÀÌÆåÆ®
-    public AudioClip getSE; // ¾ÆÀÌÅÛ È¹µæ »ç¿îµå ÀÌÆåÆ®
-    AudioSource aud; // AudioSource ÄÄÆ÷³ÍÆ®¸¦ »ç¿ëÇÏ±â À§ÇÑ º¯¼ö
+    Rigidbody2D rigid2D;// Rigidbody2D ì»´í¬ë„ŒíŠ¸ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    Animator animator; // Animator ì»´í¬ë„ŒíŠ¸ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    float jumpForce = 670.0f; // ì í”„  í¬ê¸°
+    float walkForce = 100.0f; // ì´ë™ë ¥ ì¦ê°€ 
+    float maxWalkSpeed = 3.0f; // ìµœëŒ€ ì´ë™ ì†ë„ ì¦ê°€ 
+    Vector3 defaultScale; // ê¸°ë³¸ í¬ê¸°ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    GameObject director; // GameDirector ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¸ì¡°í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
+    public AudioClip jumpSE; // ì í”„ ì‚¬ìš´ë“œ ì´í™íŠ¸
+    public AudioClip getSE; // ì•„ì´í…œ íšë“ ì‚¬ìš´ë“œ ì´í™íŠ¸
+    AudioSource aud; // AudioSource ì»´í¬ë„ŒíŠ¸ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 
 
 
     void Start()
     {
-        this.aud = GetComponent<AudioSource>(); // ÀÚ½ÅÀÇ AudioSource ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
-        this.rigid2D = GetComponent<Rigidbody2D>(); // ÀÚ½ÅÀÇ Rigidbody2D ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
-        this.animator = GetComponent<Animator>(); // ÀÚ½ÅÀÇ Animator ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
-        this.defaultScale = transform.localScale; // ÃÊ±â Å©±â¸¦ ÀúÀå
-        this.director = GameObject.Find("GameDirector"); // Scene¿¡¼­ GameDirector °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ ÇÒ´ç
+        this.aud = GetComponent<AudioSource>(); // ìì‹ ì˜ AudioSource ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
+        this.rigid2D = GetComponent<Rigidbody2D>(); // ìì‹ ì˜ Rigidbody2D ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
+        this.animator = GetComponent<Animator>(); // ìì‹ ì˜ Animator ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´
+        this.defaultScale = transform.localScale; // ì´ˆê¸° í¬ê¸°ë¥¼ ì €ì¥
+        this.director = GameObject.Find("GameDirector"); // Sceneì—ì„œ GameDirector ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ í• ë‹¹
 
     }
 
@@ -32,35 +32,35 @@ public class catcontroller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && this.rigid2D.velocity.y == 0)
         {
-            this.rigid2D.AddForce(transform.up * this.jumpForce);  // Space Å°¸¦ ´©¸£°í ÇöÀç ¼Óµµ°¡ 0ÀÎ °æ¿ì Á¡ÇÁ ÈûÀ» °¡ÇÔ
-            this.aud.PlayOneShot(this.jumpSE); // Á¡ÇÁ »ç¿îµå ÀÌÆåÆ® Àç»ı
+            this.rigid2D.AddForce(transform.up * this.jumpForce);  // Space í‚¤ë¥¼ ëˆ„ë¥´ê³  í˜„ì¬ ì†ë„ê°€ 0ì¸ ê²½ìš° ì í”„ í˜ì„ ê°€í•¨
+            this.aud.PlayOneShot(this.jumpSE); // ì í”„ ì‚¬ìš´ë“œ ì´í™íŠ¸ ì¬ìƒ
         }
 
         int key = 0;
-        if (Input.GetKey(KeyCode.RightArrow)) key = 1; // ¿À¸¥ÂÊ È­»ìÇ¥ Å°¸¦ ´©¸¥ °æ¿ì key °ªÀ» 1·Î ¼³Á¤
-        if (Input.GetKey(KeyCode.LeftArrow)) key = -1; // ¿ŞÂÊ È­»ìÇ¥ Å°¸¦ ´©¸¥ °æ¿ì key °ªÀ» -1·Î ¼³Á¤
+        if (Input.GetKey(KeyCode.RightArrow)) key = 1; // ì˜¤ë¥¸ìª½ í™”ì‚´í‘œ í‚¤ë¥¼ ëˆ„ë¥¸ ê²½ìš° key ê°’ì„ 1ë¡œ ì„¤ì •
+        if (Input.GetKey(KeyCode.LeftArrow)) key = -1; // ì™¼ìª½ í™”ì‚´í‘œ í‚¤ë¥¼ ëˆ„ë¥¸ ê²½ìš° key ê°’ì„ -1ë¡œ ì„¤ì •
 
-        float speedx = Mathf.Abs(this.rigid2D.velocity.x); // ÇöÀç xÃà ¼ÓµµÀÇ Àı´ë°ªÀ» °¡Á®¿È
+        float speedx = Mathf.Abs(this.rigid2D.velocity.x); // í˜„ì¬ xì¶• ì†ë„ì˜ ì ˆëŒ€ê°’ì„ ê°€ì ¸ì˜´
 
         if (speedx < this.maxWalkSpeed)
         {
-            this.rigid2D.AddForce(transform.right * key * this.walkForce); // ÃÖ´ë ÀÌµ¿ ¼Óµµ¿¡ µµ´ŞÇÏÁö ¾Ê¾Ò´Ù¸é ÀÌµ¿·ÂÀ» °¡ÇÔ
+            this.rigid2D.AddForce(transform.right * key * this.walkForce); // ìµœëŒ€ ì´ë™ ì†ë„ì— ë„ë‹¬í•˜ì§€ ì•Šì•˜ë‹¤ë©´ ì´ë™ë ¥ì„ ê°€í•¨
         }
 
         if (key != 0)
         {
-            transform.localScale = new Vector3(key * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Ä³¸¯ÅÍÀÇ ¹æÇâ¿¡ µû¶ó ½ºÄÉÀÏÀ» Á¶Á¤
+            transform.localScale = new Vector3(key * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // ìºë¦­í„°ì˜ ë°©í–¥ì— ë”°ë¼ ìŠ¤ì¼€ì¼ì„ ì¡°ì •
         }
         else
         {
-            transform.localScale = defaultScale; //Ä³¸¯ÅÍÀÇ ¸ğ¾çÀÌ º¯ÇüµÇÁö ¾Ê°Ô ±âº» ¸ğ¾çÀ¸·Î µÇµ¹¸®±â
+            transform.localScale = defaultScale; //ìºë¦­í„°ì˜ ëª¨ì–‘ì´ ë³€í˜•ë˜ì§€ ì•Šê²Œ ê¸°ë³¸ ëª¨ì–‘ìœ¼ë¡œ ë˜ëŒë¦¬ê¸°
         }
 
-        this.animator.speed = speedx / 2.0f; // ¾Ö´Ï¸ŞÀÌÅÍÀÇ ¼Óµµ¸¦ ÇöÀç xÃà ¼ÓµµÀÇ Àı¹İÀ¸·Î ¼³Á¤
+        this.animator.speed = speedx / 2.0f; // ì• ë‹ˆë©”ì´í„°ì˜ ì†ë„ë¥¼ í˜„ì¬ xì¶• ì†ë„ì˜ ì ˆë°˜ìœ¼ë¡œ ì„¤ì •
 
-        if (transform.position.y < -10) // Ä³¸¯ÅÍÀÇ yÃà À§Ä¡°¡ -10º¸´Ù ÀÛ¾ÆÁö´Â °æ¿ì
+        if (transform.position.y < -10) // ìºë¦­í„°ì˜ yì¶• ìœ„ì¹˜ê°€ -10ë³´ë‹¤ ì‘ì•„ì§€ëŠ” ê²½ìš°
         {
-            SceneManager.LoadScene("Game"); // "Game" ¾ÀÀ» ´Ù½Ã ·Îµå
+            SceneManager.LoadScene("Game"); // "Game" ì”¬ì„ ë‹¤ì‹œ ë¡œë“œ
         }
 
 
@@ -69,11 +69,11 @@ public class catcontroller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("item")) // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®ÀÇ ÅÂ±×°¡ "item"ÀÎ °æ¿ì
+        if (collision.gameObject.CompareTag("item")) // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ì˜ íƒœê·¸ê°€ "item"ì¸ ê²½ìš°
         {
-            director.GetComponent<GameDirector>().GetRat(); // GameDirectorÀÇ GetRat() ¸Ş¼­µå È£Ãâ
-            Destroy(collision.gameObject); // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ® »ç¶óÁö°Ô ÇÔ
-            this.aud.PlayOneShot(this.getSE); // ¾ÆÀÌÅÛ È¹µæ »ç¿îµå ÀÌÆåÆ® Àç»ı
+            director.GetComponent<GameDirector>().GetRat(); // GameDirectorì˜ GetRat() ë©”ì„œë“œ í˜¸ì¶œ
+            Destroy(collision.gameObject); // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ ì‚¬ë¼ì§€ê²Œ í•¨
+            this.aud.PlayOneShot(this.getSE); // ì•„ì´í…œ íšë“ ì‚¬ìš´ë“œ ì´í™íŠ¸ ì¬ìƒ
         }
     }
 
